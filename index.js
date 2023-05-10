@@ -1,30 +1,18 @@
-const zodiacSign = require('get-zodiac-sign');
-var myZodiacSign1 = zodiacSign(6,28);
-var myZodiacSign2 = zodiacSign(9,15);
-var myZodiacSign3 = zodiacSign(8,30);
-console.log(myZodiacSign1);
-console.log(myZodiacSign2);
-console.log(myZodiacSign3);
+// Require the success-motivational-quotes module
+const quotes = require('success-motivational-quotes');
 
-//use the fs function that comes with node
-const fs = require("fs");
-fs.writeFileSync("file2.txt", myZodiacSign1 + " and " + myZodiacSign2);
+// Display all the Quotes for Category - Learning
+console.log("Quotes for Category - Learning:");
+console.log(quotes.filterByCategory('Learning'));
 
-// creates a local web server and displays the above variables
-const http = require('http');
+// Display all the Quotes by Author - Thomas Jefferson
+console.log("Quotes by Author - Thomas Jefferson:");
+console.log(quotes.filterByAuthor('Thomas Jefferson'));
 
-// changed hostname to 0.0.0.0 to work with Repl web server
-const hostname = '0.0.0.0';
-const port = 3000;
+// Display the Quote from today
+console.log("Quote from today:");
+console.log(quotes.getQuoteOfTheDay());
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end("My Zodiac Sign is " + myZodiacSign1);
-    
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-  console.log('My Zodiac Sign is ' + myZodiacSign1 + 'and daugther is ' + myZodiacSign2)
-});
+// Display the Quote from Quote ID = 357
+console.log("Quote with ID 357:");
+console.log(quotes.getQuoteById(357));
